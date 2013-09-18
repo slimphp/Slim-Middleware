@@ -3,6 +3,17 @@
 This repository contains a library of optional middlware for your
 Slim Framework application.
 
+## How to Install
+
+Update your `composer.json` manifest so to require the `slim/middleware` package (see below).
+Run `composer install` or `composer update` to update your vendor folder.
+
+    {
+        "require": {
+            "slim/middleware": "*"
+        }
+    }
+
 ## How to Contribute
 
 ### Pull Requests
