@@ -5,7 +5,7 @@ Slim Framework application.
 
 ## How to Install
 
-Update your `composer.json` manifest so to require the `slim/middleware` package (see below).
+Update your `composer.json` manifest to require the `slim/middleware` package (see below).
 Run `composer install` or `composer update` to update your vendor folder.
 
     {
