@@ -59,7 +59,7 @@ class ContentNegotiation extends \Slim\Middleware
     public function call()
     {
         $env        = $this->app->environment;
-        $accept     = isset($env['ACCEPT']) ? $env['ACCEPT'] : '';
+        $accept     = isset($env['HTTP_ACCEPT']) ? $env['HTTP_ACCEPT'] : '';
         $priorities = isset($env['negotiation.priorities']) ? $env['negotiation.priorities'] : array();
 
         $env['request.best_format'] = $this->negotiator->getBestFormat($accept, $priorities);
