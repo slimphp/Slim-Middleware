@@ -18,6 +18,6 @@
         "willdurand/negotiation": "~1.0"
     },
     "autoload": {
-        "psr-0": { "Slim": "./src" }
+        "psr-0": { "Slim\\Middleware\\": "src/" }
     }
 }
