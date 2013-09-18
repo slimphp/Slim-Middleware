@@ -130,7 +130,7 @@ class ContentTypes extends \Slim\Middleware
      * extension is not available, the raw input
      * will be returned unchanged.
      *
-     * @param  string                  $input
+     * @param  string                   $input
      * @return \SimpleXMLElement|string
      */
     protected function parseXml($input)
@@ -140,6 +140,7 @@ class ContentTypes extends \Slim\Middleware
                 $backup = libxml_disable_entity_loader(true);
                 $result = new \SimpleXMLElement($input);
                 libxml_disable_entity_loader($backup);
+
                 return $result;
             } catch (\Exception $e) {
                 // Do nothing
