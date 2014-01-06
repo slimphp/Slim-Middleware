@@ -75,8 +75,7 @@ class ContentTypes extends \Slim\Middleware
         $mediaType = $this->app->request->getMediaType();
         if ($mediaType) {
             $env = $this->app->environment;
-            $env['slim.input_original'] = $env['slim.input'];
-            $env['slim.input'] = $this->parse($env['slim.input'], $mediaType);
+            $env['slim.input_parsed'] = $this->parse($env['slim.input'], $mediaType);
         }
         $this->next->call();
     }
