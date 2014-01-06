@@ -33,7 +33,7 @@
 namespace Slim\Middleware;
 
  /**
-  * Content Types
+  * Parse Request Body
   *
   * This is middleware for a Slim application that intercepts
   * the HTTP request body and parses it into the appropriate
@@ -41,12 +41,14 @@ namespace Slim\Middleware;
   * request body unchanged. This is particularly useful
   * for preparing the HTTP request body for an XML or JSON API.
   *
-  * @deprecated use \Slim\Middleware\ParseRequestBody
+  * The parsed (or not parsed) request body will be available
+  * in the application's environment at 'slim.input_parsed'.
+  *
   * @package    Slim
   * @author     Josh Lockhart
   * @since      1.6.0
   */
-class ContentTypes extends \Slim\Middleware
+class ParseRequestBody extends \Slim\Middleware
 {
     /**
      * @var array
@@ -76,8 +78,7 @@ class ContentTypes extends \Slim\Middleware
         $mediaType = $this->app->request->getMediaType();
         if ($mediaType) {
             $env = $this->app->environment;
-            $env['slim.input_original'] = $env['slim.input'];
-            $env['slim.input'] = $this->parse($env['slim.input'], $mediaType);
+            $env['slim.input_parsed'] = $this->parse($env['slim.input'], $mediaType);
         }
         $this->next->call();
     }
@@ -92,7 +93,7 @@ class ContentTypes extends \Slim\Middleware
      * @param  string $contentType
      * @return mixed
      */
-    protected function parse ($input, $contentType)
+    protected function parse($input, $contentType)
     {
         if (isset($this->contentTypes[$contentType]) && is_callable($this->contentTypes[$contentType])) {
             $result = call_user_func($this->contentTypes[$contentType], $input);
